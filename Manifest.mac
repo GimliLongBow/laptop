@@ -8,12 +8,12 @@ mac-components/mac-functions
 mac-components/zsh-fix
 mac-components/homebrew
 mac-components/packages
+mac-components/rd-packages
 mac-components/start-services
 mac-components/rbenv
 mac-components/compiler-and-libraries
 common-components/ruby-environment
 mac-components/bundler
-common-components/default-gems
-mac-components/heroku
+mac-components/rd-gems
 mac-components/rcm
 common-components/personal-additions

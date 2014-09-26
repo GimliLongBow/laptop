@@ -6,7 +6,8 @@
 
 # This file is auto-generated. Do not edit it by hand unless you know what
 # you're doing. Please see 'CONTRIBUTING.md' for more information.
-### end common-components/header
+
+# This was modified by Andrew Anderson (https://github.com/GimliLongBow/) for use by Ronningen Design (http://www.websitesthatdostuff.com/).### end common-components/header
 
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 
@@ -102,23 +103,8 @@ fancy_echo "Updating Homebrew formulas ..."
 brew update
 ### end mac-components/homebrew
 
-fancy_echo "Installing Postgres, a good open source relational database ..."
-  brew_install_or_upgrade 'postgres' '--no-python'
-
-fancy_echo "Installing Redis, a good key-value database ..."
-  brew_install_or_upgrade 'redis'
-
 fancy_echo "Installing The Silver Searcher (better than ack or grep) to search the contents of files ..."
   brew_install_or_upgrade 'the_silver_searcher'
-
-fancy_echo "Installing vim from Homebrew to get the latest version ..."
-  brew_install_or_upgrade 'vim'
-
-fancy_echo "Installing ctags, to index files for vim tab completion of methods, classes, variables ..."
-  brew_install_or_upgrade 'ctags'
-
-fancy_echo "Installing tmux, to save project state and switch between projects ..."
-  brew_install_or_upgrade 'tmux'
 
 fancy_echo "Installing reattach-to-user-namespace, for copy-paste and RubyMotion compatibility with tmux ..."
   brew_install_or_upgrade 'reattach-to-user-namespace'
@@ -126,8 +112,8 @@ fancy_echo "Installing reattach-to-user-namespace, for copy-paste and RubyMotion
 fancy_echo "Installing ImageMagick, to crop and resize images ..."
   brew_install_or_upgrade 'imagemagick'
 
-fancy_echo "Installing QT, used by Capybara Webkit for headless Javascript integration testing ..."
-  brew_install_or_upgrade 'qt'
+fancy_echo "Installing PhantomJS, used by Poltergeist for headless Javascript integration testing ..."
+  brew_install_or_upgrade 'phantomjs'
 
 fancy_echo "Installing watch, to execute a program periodically and show the output ..."
   brew_install_or_upgrade 'watch'
@@ -152,8 +138,78 @@ fancy_echo "Installing NVM, Node.js, and NPM, for running apps and installing Ja
   nvm alias default "$node_version"
 ### end mac-components/packages
 
-fancy_echo "Starting Postgres ..."
-  brew_launchctl_restart postgresql
+fancy_echo "Install oh-my-zsh ..."
+if [ ! -f "$HOME/.oh-my-zsh" ]; then
+  curl -L http://install.ohmyz.sh | sh
+fi
+
+fancy_echo "Install latest version of Git ..."
+brew_install_or_upgrade 'git'
+
+fancy_echo "Installing Grunt CLI ..."
+npm install -g grunt-cli
+
+fancy_echo "Install MySQL ..."
+brew_install_or_upgrade 'mysql'
+
+# Cask functionality.
+
+brew_cask_install() {
+  brew cask install "$@"
+}
+
+fancy_echo "Install Homebrew-cask ..."
+
+brew tap caskroom/cask
+brew_install_or_upgrade 'brew-cask'
+
+# Necessities
+
+fancy_echo "Install Firefox ..."
+brew_cask_install 'firefox'
+
+fancy_echo "Install Google Chrome ..."
+brew_cask_install 'google-chrome'
+
+fancy_echo "Install Alfred ..."
+brew_cask_install 'alfred'
+
+fancy_echo "Install Atom ..."
+brew_cask_install 'atom'
+
+fancy_echo "Install Adobe Creative Cloud ..."
+brew_cask_install 'adobe-creative-cloud'
+
+fancy_echo "Install Transmit ..."
+brew_cask_install 'transmit'
+
+fancy_echo "Install Sequel Pro ..."
+brew_cask_install 'sequel-pro'
+
+fancy_echo "Install iTerm 2 ..."
+brew_cask_install 'iterm2'
+
+fancy_echo "Install Slack ..."
+brew_cask_install 'slack'
+
+fancy_echo "Install Cyberduck ..."
+brew_cask_install 'cyberduck'
+
+fancy_echo "Install Tower ..."
+brew_cask_install 'tower'
+
+fancy_echo "Install Anvil ..."
+brew_cask_install 'anvil'
+
+# Niceties
+
+fancy_echo "Install Spotify ..."
+brew_cask_install 'spotify'
+
+### end mac-components/rd-packages
+
+fancy_echo "Starting MySQL ..."
+brew_launchctl_restart mysql
 ### end mac-components/start-services
 
 fancy_echo "Installing rbenv, to change Ruby versions ..."
@@ -202,24 +258,9 @@ fancy_echo "Configuring Bundler for faster, parallel gem installation ..."
   bundle config --global jobs $((number_of_cores - 1))
 ### end mac-components/bundler
 
-fancy_echo "Installing Suspenders, thoughtbot's Rails template ..."
-  gem install suspenders --no-document
-
-fancy_echo "Installing Parity, shell commands for development, staging, and
-production parity ..."
-  gem install parity --no-document
-### end common-components/default-gems
-
-fancy_echo "Installing Heroku CLI client ..."
-  brew_install_or_upgrade 'heroku-toolbelt'
-
-fancy_echo "Installing the heroku-config plugin to pull config variables locally to be used as ENV variables ..."
-  heroku plugins:install git://github.com/ddollar/heroku-config.git
-
-fancy_echo "Installing foreman ..."
-  curl -sLo /tmp/foreman.pkg http://assets.foreman.io/foreman/foreman.pkg && \
-  sudo installer -pkg /tmp/foreman.pkg -tgt /
-### end mac-components/heroku
+fancy_echo "Installing Powify"
+  gem install powify --no-document
+### end mac-components/rd-gems
 
 if ! command -v rcup >/dev/null; then
   fancy_echo "Installing rcm, to manage your dotfiles ..."

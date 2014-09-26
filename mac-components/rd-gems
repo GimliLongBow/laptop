@@ -1,0 +1,2 @@
+fancy_echo "Installing Powify"
+  gem install powify --no-document

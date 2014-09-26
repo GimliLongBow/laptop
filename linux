@@ -6,7 +6,8 @@
 
 # This file is auto-generated. Do not edit it by hand unless you know what
 # you're doing. Please see 'CONTRIBUTING.md' for more information.
-### end common-components/header
+
+# This was modified by Andrew Anderson (https://github.com/GimliLongBow/) for use by Ronningen Design (http://www.websitesthatdostuff.com/).### end common-components/header
 
 trap 'ret=$?; test $ret -ne 0 && printf "failed\n\n" >&2; exit $ret' EXIT
 

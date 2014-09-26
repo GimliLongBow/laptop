@@ -1,0 +1,68 @@
+fancy_echo "Install oh-my-zsh ..."
+if [ ! -f "$HOME/.oh-my-zsh" ]; then
+  curl -L http://install.ohmyz.sh | sh
+fi
+
+fancy_echo "Install latest version of Git ..."
+brew_install_or_upgrade 'git'
+
+fancy_echo "Installing Grunt CLI ..."
+npm install -g grunt-cli
+
+fancy_echo "Install MySQL ..."
+brew_install_or_upgrade 'mysql'
+
+# Cask functionality.
+
+brew_cask_install() {
+  brew cask install "$@"
+}
+
+fancy_echo "Install Homebrew-cask ..."
+
+brew tap caskroom/cask
+brew_install_or_upgrade 'brew-cask'
+
+# Necessities
+
+fancy_echo "Install Firefox ..."
+brew_cask_install 'firefox'
+
+fancy_echo "Install Google Chrome ..."
+brew_cask_install 'google-chrome'
+
+fancy_echo "Install Alfred ..."
+brew_cask_install 'alfred'
+
+fancy_echo "Install Atom ..."
+brew_cask_install 'atom'
+
+fancy_echo "Install Adobe Creative Cloud ..."
+brew_cask_install 'adobe-creative-cloud'
+
+fancy_echo "Install Transmit ..."
+brew_cask_install 'transmit'
+
+fancy_echo "Install Sequel Pro ..."
+brew_cask_install 'sequel-pro'
+
+fancy_echo "Install iTerm 2 ..."
+brew_cask_install 'iterm2'
+
+fancy_echo "Install Slack ..."
+brew_cask_install 'slack'
+
+fancy_echo "Install Cyberduck ..."
+brew_cask_install 'cyberduck'
+
+fancy_echo "Install Tower ..."
+brew_cask_install 'tower'
+
+fancy_echo "Install Anvil ..."
+brew_cask_install 'anvil'
+
+# Niceties
+
+fancy_echo "Install Spotify ..."
+brew_cask_install 'spotify'
+
