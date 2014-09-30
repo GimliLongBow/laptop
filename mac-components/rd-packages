@@ -61,6 +61,9 @@ brew_cask_install 'tower'
 fancy_echo "Install Anvil ..."
 brew_cask_install 'anvil'
 
+fancy_echo "Install VirtualHostX ..."
+brew_cask_install 'virtualhostx'
+
 # Niceties
 
 fancy_echo "Install Spotify ..."

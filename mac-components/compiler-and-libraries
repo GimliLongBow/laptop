@@ -1,3 +1,6 @@
 fancy_echo "Upgrading and linking OpenSSL ..."
   brew_install_or_upgrade 'openssl'
-  brew unlink openssl && brew link openssl --force
+
+fancy_echo "Installing Apple GCC 4.2 ..."
+brew tap homebrew/dupes
+brew_install_or_upgrade 'apple-gcc42'

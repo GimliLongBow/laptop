@@ -1,0 +1,12 @@
+fancy_echo 'Setting up Pow config ...'
+
+if [ ! -f "$HOME/.powconfig" ]; then
+  printf 'export POW_DST_PORT=88' >> ~/.powconfig
+  printf 'export PATH="${HOME}/.rbenv/shims:${HOME}/.rbenv/bin:${PATH}"' >> ~.powconfig
+fi
+
+fancy_echo 'Setting up Apache-Pow configuration ...'
+
+if [ ! -f "/etc/apache2/other/zzz_pow.conf" ]; then
+  sudo curl https://gist.githubusercontent.com/soupmatt/1058580/raw/zzz_pow.conf -o /etc/apache2/other/zzz_pow.conf
+fi

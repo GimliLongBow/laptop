@@ -16,4 +16,5 @@ common-components/ruby-environment
 mac-components/bundler
 mac-components/rd-gems
 mac-components/rcm
+mac-components/rd-powconfig
 common-components/personal-additions

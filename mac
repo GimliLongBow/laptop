@@ -201,6 +201,9 @@ brew_cask_install 'tower'
 fancy_echo "Install Anvil ..."
 brew_cask_install 'anvil'
 
+fancy_echo "Install VirtualHostX ..."
+brew_cask_install 'virtualhostx'
+
 # Niceties
 
 fancy_echo "Install Spotify ..."
@@ -234,7 +237,10 @@ fancy_echo "Installing ruby-build, to install Rubies ..."
 
 fancy_echo "Upgrading and linking OpenSSL ..."
   brew_install_or_upgrade 'openssl'
-  brew unlink openssl && brew link openssl --force
+
+fancy_echo "Installing Apple GCC 4.2 ..."
+brew tap homebrew/dupes
+brew_install_or_upgrade 'apple-gcc42'
 ### end mac-components/compiler-and-libraries
 
 ruby_version="$(curl -sSL http://ruby.thoughtbot.com/latest)"
@@ -270,6 +276,20 @@ else
   fancy_echo "rcm already installed. Skipping ..."
 fi
 ### end mac-components/rcm
+
+fancy_echo 'Setting up Pow config ...'
+
+if [ ! -f "$HOME/.powconfig" ]; then
+  printf 'export POW_DST_PORT=88' >> ~/.powconfig
+  printf 'export PATH="${HOME}/.rbenv/shims:${HOME}/.rbenv/bin:${PATH}"' >> ~.powconfig
+fi
+
+fancy_echo 'Setting up Apache-Pow configuration ...'
+
+if [ ! -f "/etc/apache2/other/zzz_pow.conf" ]; then
+  sudo curl https://gist.githubusercontent.com/soupmatt/1058580/raw/zzz_pow.conf -o /etc/apache2/other/zzz_pow.conf
+fi
+### end mac-components/rd-powconfig
 
 fancy_echo "Installing your personal additions from ~/.laptop.local ..."
   if [[ -f ~/.laptop.local ]]; then
